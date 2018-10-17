@@ -1,6 +1,6 @@
 <template>
   <div class="layout-wrap">
-    <div class="container">
+    <div>
       <router-view></router-view>
     </div>
     <div class="bottom-tab">

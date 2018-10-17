@@ -14,41 +14,41 @@
         <div class="swiper-pagination"></div>
       </div>
       <div class="menu-list">
-        <div class="row">
+        <div class="row" style="padding-top:10px">
           <router-link class="list-item" to="/news">
-            <img src="../assets/icon_01.png">
+            <img src="../../assets/icon_01.png">
             <div>
               信工新闻眼
             </div>
           </router-link>
           <router-link  class="list-item" to="/organizations">
-            <img src="../assets/icon_03.png">
+            <img src="../../assets/icon_03.png">
             <div>
               掌上组织生活
             </div>
           </router-link>
           <router-link class="list-item" to="/">
-            <img src="../assets/icon_05.png">
+            <img src="../../assets/icon_05.png">
             <div>
               党员云互动
             </div>
           </router-link>
         </div>
-        <div class="row">
+        <div class="row" style="padding-bottom:5px">
           <router-link  class="list-item" to="/build">
-            <img src="../assets/icon_04.png">
+            <img src="../../assets/icon_04.png">
             <div>
               党建一点通
             </div>
           </router-link>
           <router-link class="list-item" to="/showIdentity">
-            <img src="../assets/icon_06.png">
+            <img src="../../assets/icon_06.png">
             <div>
               党员亮身份
             </div>
           </router-link>
-          <router-link class="list-item" to="/">
-            <img src="../assets/icon_02.png">
+          <router-link class="list-item" to="/history">
+            <img src="../../assets/icon_02.png">
             <div>
               党史上的今天
             </div>
@@ -56,24 +56,24 @@
         </div>
       </div>
       <div class="banner-wrap">
-        <img src="../assets/banner001.png">
+        <img src="../../assets/banner001.png">
       </div>
       <div class="table-wrap">
         <div class="col1"></div>
         <div class="col2">
           <div class="row1">
-            <router-link to="">
+            <router-link to="/learn">
 
             </router-link>
-            <router-link to="">
+            <router-link to="/photo">
               
             </router-link>
           </div>
           <div class="row2">
-            <router-link to="">
+            <router-link to="/system">
               
             </router-link>
-            <router-link to="">
+            <router-link to="/activity">
               
             </router-link>
           </div>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import Header from '@/components/header'
+import Header from '../../components/header'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
@@ -185,23 +185,21 @@ export default {
 }
 
 .menu-list {
-  background: url('../assets/bt_bg.png') no-repeat center center;
+  background: url('../../assets/bt_bg.png') no-repeat center center;
   background-size: (100%,100%);
 
   .row {
     display: flex;
     text-align: center;
+    width: 7.2rem;
   }
 
   .row:nth-child(1){
     margin-bottom:20px;
   }
-  .row:nth-child(2){
-    padding-bottom:10px;
-  }
+  
   .list-item {
-    padding-top:10px;
-
+    // padding-top:10px;
     text-decoration: none;
     font-size: 12px;
     color:#666;
@@ -219,14 +217,15 @@ export default {
 
   img {
     width: 7.2rem;
-    vertical-align: middle;
+    vertical-align: bottom;
+    // display: block;
   }
 }
 
 .table-wrap {
   width: 7.2rem;
-  height: 164px;
-  background: url('../assets/tese.png') no-repeat center center;
+  height: 155px;
+  background: url('../../assets/tese.png') no-repeat center center;
   background-size: 100%;
   display: flex;
 

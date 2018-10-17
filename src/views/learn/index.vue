@@ -1,9 +1,8 @@
 <template>
-  <div class="">
+  <div class="wrapper">
     <Header :title="this.$route.meta.title"></Header>
     <NewsList :listData="listData" :routeData="this.$route.name"></NewsList>
   </div>
-  
 </template>
 
 <script>
@@ -20,10 +19,10 @@ export default {
   components: {
     Header,
     NewsList
-  },  
+  },
   methods: {
     getListData() {
-      this.$axios.get('/news/newsList.do',{page:1,rows:10,type:2}).then(res => {
+      this.$axios.get('/news/newsList.do',{page:1,rows:10,type:6}).then(res => {
         if (res.code == 1) {
           this.listData = res.rows
         }

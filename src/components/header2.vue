@@ -1,7 +1,6 @@
 <template>
   <div class="header-wrap">
-    <router-link to='/layout/index' class="icon fll">
-    </router-link>
+    <i class="icon fll" @click="returnPage"></i>
     <h3 class="title">{{title}}</h3>
   </div>
 </template>
@@ -20,10 +19,12 @@ export default {
     }
   },
   components: {
-
+    
   },
   methods: {
-
+    returnPage() {
+      history.go(-1)
+    }
   }
 }
 </script>

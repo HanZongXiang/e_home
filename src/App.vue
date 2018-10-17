@@ -98,9 +98,13 @@ a{
     font-weight: 500;
   }
 
+  h4 {
+    font-size: 18px;
+  }
+
   span {
     line-height: 2;
-    font-size: 18px;
+    font-size: 12px;
     color:rgb(34,34,34);
   }
 }

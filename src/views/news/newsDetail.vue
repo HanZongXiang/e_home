@@ -1,27 +1,26 @@
 <template>
   <div class="detail">
-    <Header :title="this.$route.meta.title"></Header>
-    <div class="detail-wrap">
-      <h3>{{detail.title}}</h3>
-      <div class="detail-content" v-html="content">
-      </div>
-    </div>
+    <Header :title="title"></Header>
+    <Detail :detail="detail"></Detail>
   </div>
 </template>
 
 <script>
 import Header from '@/components/header2'
+import Detail from '@/components/details'
 
 export default {
   name:'',
   data() {
     return {
       detail:{},
-      content:''
+      content:'',
+      title:''
     }
   },
   components: {
-    Header
+    Header,
+    Detail
   },
   methods: {
     getNewsDetails() {
@@ -32,8 +31,36 @@ export default {
           this.detail = res.data
           this.content = res.data.content
           console.log(res)
+          switch(res.data.type) {
+            case 0: 
+              this.title = '信工新闻眼'
+              break;
+            case 1: 
+              this.title = '特色活动'
+              break;
+            case 3: 
+              this.title = '党建一点通'
+              break;
+            case 4: 
+              this.title = '制度建设'
+              break;
+            case 5: 
+              this.title = '党员亮身份'
+              break;  
+            case 6:
+              this.title = '随时随地学'
+              break;
+            case 7:
+              this.title = '随时随地拍'
+              break;
+            default:
+              break;
+          }
         }
       })
+    },
+    returnPage() {
+      history.go(-1)
     }
   },
   created() {

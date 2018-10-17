@@ -2,7 +2,6 @@
   <div class="wrapper">
     <Header :title="this.$route.meta.title"></Header>
     <NewsList :listData="listData" :routeData="this.$route.name"></NewsList>
-    
   </div>
 </template>
 

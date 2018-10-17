@@ -1,18 +1,18 @@
 <template>
   <div class="tab-wrap clearfix">
-    <div class="left fll" :class="{active:$route.name === 'index'}">
+    <div class="left fll" :class="{active1:index == 1}" @click="index = 1">
       <router-link to="/layout/index">
         <span>首页</span>
       </router-link>
       
     </div>
-    <div class="center fll">
+    <div class="center fll" :class="{active2:index == 2}" @click="index = 2">
       <router-link to="/layout/notice">
         <span>通知早知道</span>
       </router-link>
       
     </div>
-    <div class="right fll">
+    <div class="right fll" :class="{active3:index == 3}" @click="index = 3">
       <router-link to="/layout/person">
         <span>我的党建</span>
       </router-link>
@@ -26,7 +26,7 @@ export default {
   name:'tab',
   data() {
     return {
-      selected:true
+      index:1
     }
   },
   components: {
@@ -42,7 +42,6 @@ export default {
 .tab-wrap {
   width: 7.2rem;
   height: 54.5px;
-  // padding-top: 2px;
   position:fixed;
   background: #fff;
   z-index: 2;
@@ -55,11 +54,8 @@ export default {
     width: 33%;
     height: 54.5px;
     text-align: center;
-    // border-top:2px solid black;
 
-    
-
-    a{
+    a {
       padding-top:26px;
       display: block;
       text-decoration: none;
@@ -75,12 +71,9 @@ export default {
 
     }
 
-    
-
   }
 
   .left {
-
     a {
       background-image: url('../assets/index/党_grey.png');
       background-repeat: no-repeat;
@@ -103,7 +96,7 @@ export default {
       background-image: url('../assets/index/会员_grey.png');
       background-repeat: no-repeat;
       background-position: center 5px;
-      background-size: (21px,22px);
+      background-size: (18px,20px);
     }
   }
 
@@ -113,33 +106,42 @@ export default {
     }
   }
 
-  a:hover {
-    & {
-      border-top:2px solid #c7000a;
-    }
+  .active1  {
+    a{
+      border-color:#c7000a; 
+      background: url('../assets/index/党_red.png') no-repeat center 5px;
+      background-size: (21px,26px);
 
-    span {
-      color:#c7000a;
-    }
-  }
-
-  .left a:hover {
-    & {
-      background-image:url('../assets/index/党_red.png');
+      span {
+        color:#c7000a;
+      }
     }
   }
 
-  .center a:hover {
-    & {
-      background-image:url('../assets/index/消息_red.png');
+  .active2  {
+    a{
+      border-color:#c7000a; 
+      background: url('../assets/index/消息_red.png') no-repeat center 5px;
+      background-size: (21px,26px);
+
+      span {
+        color:#c7000a;
+      }
     }
   }
 
-  .right a:hover {
-    & {
-      background-image:url('../assets/index/会员_red.png');
+  .active3  {
+    a{
+      border-color:#c7000a; 
+      background: url('../assets/index/会员_red.png') no-repeat center 5px;
+      background-size: (18px,20px);
+
+      span {
+        color:#c7000a;
+      }
     }
   }
-
 }
+
+
 </style>

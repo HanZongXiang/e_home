@@ -1,10 +1,12 @@
 <template>
-  <div class="">
-    detail
+  <div class="wrapper">
+    <Header :title="this.$route.meta.name"></Header>
   </div>
 </template>
 
 <script>
+import Header from '@/components/header2'
+
 export default {
   name:'',
   data() {
@@ -13,7 +15,7 @@ export default {
     }
   },
   components: {
-
+    Header
   },
   methods: {
 

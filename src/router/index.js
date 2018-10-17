@@ -2,34 +2,40 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const components = {
-  layout:() => import('@/views/layout'),
-  index:() => import('@/views/index'),
+  layout:() => import('@/views/layout/layout'),
+  index:() => import('@/views/index/index'),
+  login:() => import('@/views/login/index'),
   notice: () => import('@/views/notice/notice'),
   person: () => import('@/views/person/person'),
   news:() => import('@/views/news/news'),
   newsDetail:() => import('@/views/news/newsDetail'),
   organizations:() => import('@/views/organization/index'),
   build:() => import('@/views/build/index'),
-  buildDetail:() => import('@/views/build/buildDetail'),
   showIdentity:() => import('@/views/showIdentity/index'),
-  showIdentityDetail: () => import('@/views/showIdentity/detail')
+  history: () => import('@/views/history/index'),
+  learn: () => import('@/views/learn/index'),
+  photo: () => import('@/views/photo/index'),
+  system:() => import('@/views/system/index'),
+  activity: () => import('@/views/activity/index')
 }
 
 Vue.use(Router)
 
 let router = new Router({
+  // base:'/',
+  // redirect:'/index',
   routes: [
     {
       path: '/layout',
       name: 'layout',
       component: components.layout,
-      redirect:'/index',
+      redirect:'/layout/index',
       children: [
         {
           path:'index',
           name: 'index',
           meta: {
-            title:'首页'
+            title:'信工党建e家'
           },
           component: components.index
         },
@@ -50,6 +56,14 @@ let router = new Router({
           component: components.person
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      meta: {
+        title: '登录'
+      },
+      component: components.login
     },
     {
       path:'/news',
@@ -89,7 +103,7 @@ let router = new Router({
       meta: {
         title: '党建一点通'
       },
-      component: components.buildDetail
+      component: components.newsDetail
     },
     {
       path: '/showIdentity',
@@ -105,8 +119,88 @@ let router = new Router({
       meta: {
         title: '党员亮身份'
       },
-      component: components.showIdentityDetail
-    }
+      component: components.newsDetail
+    },
+    {
+      path: '/noticeDetail/:id',
+      name:'noticeDetail',
+      meta: {
+        title: '通知早知道'
+      },
+      component: components.newsDetail
+    },
+    {
+      path: '/history',
+      name: 'history',
+      meta: {
+        title: '党史上的今天'
+      },
+      component: components.history
+    },
+    {
+      path: '/learn',
+      name: 'learn',
+      meta: {
+        title: '随时随地学'
+      },
+      component: components.learn
+    },
+    {
+      path: '/learnDetail',
+      name: 'learnDetail',
+      meta: {
+        title: '随时随地学'
+      },
+      component: components.newsDetail
+    },
+    {
+      path: '/photo',
+      name: 'photo',
+      meta: {
+        title: '随时随地拍'
+      },
+      component: components.photo
+    },
+    {
+      path: '/photoDetail',
+      name: 'photoDetail',
+      meta: {
+        title: '随时随地拍'
+      },
+      component: components.newsDetail
+    },
+    {
+      path: '/system',
+      name: 'system',
+      meta: {
+        title: '制度建设'
+      },
+      component: components.system
+    },
+    {
+      path: '/systemDetail',
+      name: 'systemDetail',
+      meta: {
+        title: '制度建设'
+      },
+      component: components.newsDetail
+    },
+    {
+      path: '/activity',
+      name: 'activity',
+      meta: {
+        title: '特色活动'
+      },
+      component: components.activity
+    },
+    {
+      path: '/activityDetail',
+      name: 'activityDetail',
+      meta: {
+        title: '特色活动'
+      },
+      component: components.newsDetail
+    },
   ]
 })
 

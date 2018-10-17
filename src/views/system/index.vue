@@ -1,9 +1,8 @@
 <template>
-  <div class="">
+  <div>
     <Header :title="this.$route.meta.title"></Header>
-    <NewsList :listData="listData" :routeData="this.$route.name"></NewsList>
+    <NewsList :listData="systemData" :routeData="this.$route.name"></NewsList>
   </div>
-  
 </template>
 
 <script>
@@ -14,24 +13,25 @@ export default {
   name:'',
   data() {
     return {
-      listData: []
+      systemData: []
     }
   },
   components: {
     Header,
     NewsList
-  },  
+  },
   methods: {
-    getListData() {
-      this.$axios.get('/news/newsList.do',{page:1,rows:10,type:2}).then(res => {
+    getSystemData() {
+      this.$axios.get('/news/newsList.do',{page:1,rows:10,type:4}).then(res => {
         if (res.code == 1) {
-          this.listData = res.rows
+          console.log(res)
+          this.systemData = res.rows
         }
       })
     }
   },
   created() {
-    this.getListData()
+    this.getSystemData()
   }
 }
 </script>

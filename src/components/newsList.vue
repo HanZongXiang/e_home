@@ -1,9 +1,10 @@
 <template>
   <div class="list-wrap">
-    <router-link :to="{name:`${routeData}Detail`, params:{id:item.newsId}}" class="list-item" v-for="(item,index) in listData" :key="index">
+    <router-link :to="{name:`${routeData}Detail`, params:{id:item.newsId}}" class="list-item" v-for="(item,index) in currentList" :key="index">
       <li class="clearfix">
         <div class="left-img fll">
-          <img :src="item.pic">
+          <img :src="item.pic" v-if="routeData != 'notice'">
+          <img src="@/assets/notice/laba.png" v-if="routeData == 'notice'" style="width:40px">
         </div>
         <div class="right-content">
           <div class="news-title">{{item.title}}</div>
@@ -11,7 +12,7 @@
             <p class="time fll">
               <Timer :time="item.updateTime"></Timer>
             </p>
-            <span class="read-nums flr">
+            <span class="read-nums flr" v-if="routeData != 'notice'">
               <img src="../assets/news/12-eye.png">
               {{item.count}}
             </span>
@@ -60,22 +61,27 @@ export default {
   .list-item {
     display: block;
     width: 7.2rem;
+    height: 2rem;
     padding:10px;
-    padding-right: 20px;
     text-decoration: none;
     color:#666;
     border-bottom: 1px solid #e1e1e1;
 
     li {
       display:flex;
-      padding-right: 17px;
     }
 
+    .left-img {
+      display: flex;
+      align-items: center;
+    }
+    
     .right-content {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 5.2rem;
+      width: 5rem;
+      height: 1.5rem;
       margin-left:10px;
 
       .news-detail{
