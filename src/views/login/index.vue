@@ -9,9 +9,9 @@
         <img src="@/assets/logo.png">
       </div>
       <div class="input-wrap">
-        <input type="text" placeholder="身份证号">
-        <input type="password" placeholder="密码">
-        <button type="submit">登录</button>
+        <input type="text" placeholder="身份证号" v-model="formData.id_card">
+        <input type="password" placeholder="密码" v-model="formData.password">
+        <mu-button color="primary" @click="handleLogin">登录</mu-button>
       </div>
     </div>
   </div>
@@ -20,12 +20,16 @@
 
 <script>
 import Header from '@/components/header2'
+import axios from 'axios'
 
 export default {
   name:'',
   data() {
     return {
-
+      formData: {
+        id_card:'1001',
+        password:'123456'
+      }
     }
   },
   components: {
@@ -34,7 +38,48 @@ export default {
   methods: {
     returnPage() {
       history.go(-1)
+    },
+    // getToken() {
+    //   axios.get('/api2/uploadToken/get').then(res => {
+    //     if(res.data.code == 200) {
+    //       console.log(res.data)
+    //     }
+    //   })
+    // },
+    handleLogin() {
+      // axios.post('/api2/user/login',this.formData).then(res => {
+      //   if (res.data.code == 200) {
+      //     console.log(res)
+      //     this.$toast.success(res.data.msg);
+      //     this.$store.commit('CHANGE_userInfo',res.data.userInfo)
+      //     setTimeout(() => {
+      //       this.$router.push('/layout/person')
+      //     }, 1000);
+      //   } else {
+      //     this.$toast.error(res.data.msg);
+      //   }
+      // })
+      this.$axios.post('/user/userLogin.do',this.formData).then(res => {
+        let obj = {
+          username: res.data.username,
+          avatar: res.data.header,
+          idCardNumber: res.data.idCard
+        }
+        if (res.code == 1) {
+          console.log(res)
+          this.$toast.success(res.msg)
+          this.$store.commit('CHANGE_userInfo',obj)
+          setTimeout(() => {
+            this.$router.push('/layout/person')
+          }, 1000)
+        }else {
+          this.$toast.error(res.data.msg);
+        }
+      })
     }
+  },
+  created() {
+    // this.getToken()
   }
 }
 </script>

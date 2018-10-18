@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header :title="this.$route.meta.name"></Header>
+    <Header :title="this.$route.meta.title"></Header>
   </div>
 </template>
 

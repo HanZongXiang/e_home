@@ -5,10 +5,30 @@ const instance = axios.create({
   timeout:15000
 })
 
+const qs = require('querystring')
+instance.interceptors.request.use(function (config) {
+  if (config.method == 'post') {
+    config.data = qs.stringify(config.data)
+    config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+  }
+  return config
+}, function (error) {
+  return Promise.reject(error)
+})
+
 const xhr = {
   get(url,data,config) {
     return new Promise((resolve,reject) => {
       instance.get(url, { params: data }, config).then(res => {
+        resolve(res.data)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  post(url, data, config) {
+    return new Promise((resolve, reject) => {
+      instance.post(url, data , config).then(res => {
         resolve(res.data)
       }).catch(err => {
         reject(err)

@@ -2,47 +2,52 @@
   <div class="wrapper">
     <Header :title="this.$route.meta.title"></Header>
     <div class="avatar-wrap">
-      <img src="@/assets/avatar.jpg" class="avatar">
-      <p style="margin-bottom:0.35rem;">test</p>
+      <img :src="userInfo.avatar" class="avatar" v-show="userInfo.username">
+      <img src="@/assets/index/bt_bg.png" class="avatar" v-show="!userInfo.username">
+      <p style="margin-bottom:0.35rem;" v-show="userInfo.username">{{userInfo.username}}</p>
+      <p style="margin-bottom:0.35rem;" @click="$router.push('/login')" v-show="!userInfo.username">你还没有登录，请先登录</p>
     </div>
     <div class="menu-list">
-      <router-link to="">
+      <div class="item" @click="jumpToInfo">
         <div class="info">
           <img src="@/assets/person.png">
           个人信息
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </router-link>
-      <router-link to="">
-        <div class="info">
+      </div>
+      <div class="item" @click="jumpToScore">
+        <div class="info" >
           <img src="@/assets/lxjf.png">
           个人量化积分
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </router-link>
-      <router-link to="">
+      </div>
+      <div class="item" @click="jumpToChangePwd">
         <div class="info">
           <img src="@/assets/xgmm.png">
           修改密码
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </router-link>
-      <router-link to="">
+      </div>
+      <div class="item" @click="jumpToFee">
         <div class="info">
           <img src="@/assets/icon3.png">
           党费缴纳
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </router-link>
-      <div class="btn-wrap" v-show="login">
-        <button>退出登录</button>
+      </div>
+      <div class="btn-wrap" v-show="userInfo.username">
+        <mu-button @click="handleLogout">退出登录</mu-button>
+        <mu-fade-transition></mu-fade-transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import Header from '@/components/header2'
+import {mapState} from 'vuex'
 
 export default {
   name:'',
@@ -55,7 +60,53 @@ export default {
     Header
   },
   methods: {
-
+    handleLogout() {
+     
+        let obj = {
+            username: '',
+            avatar: '',
+            idCardNumber: '',
+            level: ''
+          }
+        if (this.$store.state.userInfo.username) {
+          this.$store.commit('CHANGE_userInfo',obj)
+          this.$toast.info('退出登录成功')
+        } else {
+          this.$store.commit('CHANGE_userInfo',obj)
+          this.$toast.info('退出登录成功')
+        }
+    },
+    jumpToInfo() {
+      if (this.$store.state.userInfo.username) {
+        this.$router.push('/layout/index')
+      } else {
+        this.$router.push('/login')
+      }
+    },
+    jumpToScore() {
+      if (this.$store.state.userInfo.username) {
+        this.$router.push('/layout/index')
+      } else {
+        this.$router.push('/login')
+      }
+    },
+    jumpToChangePwd() {
+      if (this.$store.state.userInfo.username) {
+        this.$router.push('/layout/index')
+      } else {
+        this.$router.push('/login')
+      }
+    },
+    jumpToFee() {
+      if (this.$store.state.userInfo.username) {
+        this.$router.push('/layout/index')
+      } else {
+        this.$router.push('/login')
+      }
+    },
+  },
+  computed: {
+    ...mapState(['userInfo'])
   }
 }
 </script>
@@ -83,8 +134,7 @@ export default {
 
   .menu-list {
 
-    a {
-      display:block;
+    .item {
       height: 1rem;
       display:flex;
       justify-content: space-between;

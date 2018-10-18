@@ -27,7 +27,7 @@
               掌上组织生活
             </div>
           </router-link>
-          <router-link class="list-item" to="/">
+          <router-link class="list-item" to="/interactive">
             <img src="../../assets/icon_05.png">
             <div>
               党员云互动

@@ -38,6 +38,9 @@ export default {
             case 1: 
               this.title = '特色活动'
               break;
+            case 2:
+              this.title = '通知早知道'
+              break;
             case 3: 
               this.title = '党建一点通'
               break;
@@ -52,6 +55,9 @@ export default {
               break;
             case 7:
               this.title = '随时随地拍'
+              break;
+            case 8:
+              this.title = '政治学习'
               break;
             default:
               break;

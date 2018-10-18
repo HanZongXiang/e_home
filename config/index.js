@@ -17,11 +17,15 @@ module.exports = {
         pathRewrite:{
           '/api':'/'
         }
-      }
+      },
+      // '/api2': {
+      //   target: 'http://localhost:3000',
+      //   changeOringin: true
+      // }
     },
 
     // Various Dev Server settings
-    host: '192.168.1.186', // can be overwritten by process.env.HOST
+    host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

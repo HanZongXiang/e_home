@@ -1,22 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import 'muse-ui-progress/dist/muse-ui-progress.css'
+import MuseUIProgress from 'muse-ui-progress'
+Vue.use(MuseUIProgress, {
+  top: 0,                // position fixed top
+  speed: 200,            // progress speed
+  color: 'primary',      // color
+  size: 2,               // progress size
+  className: ''          // progress custom class
+})
 
 const components = {
   layout:() => import('@/views/layout/layout'),
   index:() => import('@/views/index/index'),
   login:() => import('@/views/login/index'),
-  notice: () => import('@/views/notice/notice'),
   person: () => import('@/views/person/person'),
   news:() => import('@/views/news/news'),
   newsDetail:() => import('@/views/news/newsDetail'),
   organizations:() => import('@/views/organization/index'),
-  build:() => import('@/views/build/index'),
-  showIdentity:() => import('@/views/showIdentity/index'),
   history: () => import('@/views/history/index'),
-  learn: () => import('@/views/learn/index'),
   photo: () => import('@/views/photo/index'),
-  system:() => import('@/views/system/index'),
-  activity: () => import('@/views/activity/index')
+  interactive: () => import('@/views/interactive/index')
 }
 
 Vue.use(Router)
@@ -43,9 +47,10 @@ let router = new Router({
           path: 'notice',
           name: 'notice',
           meta: {
-            title: '通知早知道'
+            title: '通知早知道',
+            type: 2
           },
-          component: components.notice
+          component: components.news
         },
         {
           path: 'person',
@@ -69,7 +74,8 @@ let router = new Router({
       path:'/news',
       name:'news',
       meta: {
-        title: '信工新闻眼'
+        title: '信工新闻眼',
+        type:0
       },
       component: components.news
     },
@@ -93,9 +99,10 @@ let router = new Router({
       path: '/build',
       name: 'build',
       meta: {
-        title: '党建一点通'
+        title: '党建一点通',
+        type: 3
       },
-      component: components.build
+      component: components.news
     },
     {
       path: '/buildDetail/:id',
@@ -109,9 +116,10 @@ let router = new Router({
       path: '/showIdentity',
       name: 'showIdentity',
       meta: {
-        title: '党员亮身份'
+        title: '党员亮身份',
+        type: 5
       },
-      component: components.showIdentity
+      component: components.news
     },
     {
       path: '/showIdentityDetail/:id',
@@ -141,9 +149,10 @@ let router = new Router({
       path: '/learn',
       name: 'learn',
       meta: {
-        title: '随时随地学'
+        title: '随时随地学',
+        type: 6
       },
-      component: components.learn
+      component: components.news
     },
     {
       path: '/learnDetail',
@@ -173,9 +182,10 @@ let router = new Router({
       path: '/system',
       name: 'system',
       meta: {
-        title: '制度建设'
+        title: '制度建设',
+        type: 4
       },
-      component: components.system
+      component: components.news
     },
     {
       path: '/systemDetail',
@@ -189,9 +199,10 @@ let router = new Router({
       path: '/activity',
       name: 'activity',
       meta: {
-        title: '特色活动'
+        title: '特色活动',
+        type: 1
       },
-      component: components.activity
+      component: components.news
     },
     {
       path: '/activityDetail',
@@ -201,15 +212,47 @@ let router = new Router({
       },
       component: components.newsDetail
     },
+    {
+      path: '/politicsStudy',
+      name: 'politics',
+      meta: {
+        title: '政治学习',
+        type: 8
+      },
+      component: components.news
+    },
+    {
+      path: '/politicsDetail',
+      name: 'politicsDetail',
+      meta: {
+        title: '政治学习'
+      },
+      component: components.newsDetail
+    },
+    {
+      path: '/interactive',
+      name: 'interactive',
+      meta: {
+        title: '党员云互动',
+        type: 9
+      },
+      component: components.interactive
+    },
   ]
 })
 
 router.beforeEach((to,from,next) => {
+  MuseUIProgress.start()
+
   if (to.meta.title) {
     document.title = to.meta.title
   }
 
   next()
+})
+
+router.afterEach((to,from) => {
+  MuseUIProgress.done()
 })
 
 export default router

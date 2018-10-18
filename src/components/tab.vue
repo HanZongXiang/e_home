@@ -1,18 +1,18 @@
 <template>
   <div class="tab-wrap clearfix">
-    <div class="left fll" :class="{active1:index == 1}" @click="index = 1">
+    <div class="left fll" :class="{active1:this.$route.name == 'index'}">
       <router-link to="/layout/index">
         <span>首页</span>
       </router-link>
       
     </div>
-    <div class="center fll" :class="{active2:index == 2}" @click="index = 2">
+    <div class="center fll" :class="{active2:this.$route.name == 'notice'}">
       <router-link to="/layout/notice">
         <span>通知早知道</span>
       </router-link>
       
     </div>
-    <div class="right fll" :class="{active3:index == 3}" @click="index = 3">
+    <div class="right fll" :class="{active3:this.$route.name == 'person'}">
       <router-link to="/layout/person">
         <span>我的党建</span>
       </router-link>
@@ -26,7 +26,6 @@ export default {
   name:'tab',
   data() {
     return {
-      index:1
     }
   },
   components: {

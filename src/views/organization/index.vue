@@ -7,7 +7,7 @@
     </div>
     <div class="menu-list">
       <div class="row1">
-        <router-link to="/">
+        <router-link to="/politicsStudy">
           <img src="../../assets/icon1.png">
           <div>政治学习</div>
         </router-link>
