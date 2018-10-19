@@ -14,7 +14,6 @@
     "babel-plugin-import": "^1.10.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "mint-ui": "^2.2.13",
     "muse-ui": "^3.0.1",
     "muse-ui-loading": "^0.2.0",
     "muse-ui-progress": "^0.1.0",

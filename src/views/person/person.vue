@@ -8,37 +8,43 @@
       <p style="margin-bottom:0.35rem;" @click="$router.push('/login')" v-show="!userInfo.username">你还没有登录，请先登录</p>
     </div>
     <div class="menu-list">
-      <div class="item" @click="jumpToInfo">
+      <router-link class="item" :to=" userInfo.username ? '/infomation' : '/login' " style="z-index:999">
         <div class="info">
           <img src="@/assets/person.png">
           个人信息
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </div>
-      <div class="item" @click="jumpToScore">
+      </router-link>
+      <router-link class="item" :to=" userInfo.username ? '/score' : '/login' ">
         <div class="info" >
           <img src="@/assets/lxjf.png">
           个人量化积分
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </div>
-      <div class="item" @click="jumpToChangePwd">
+      </router-link>
+      <router-link class="item" :to=" userInfo.username ? '/changePwd' : '/login' ">
         <div class="info">
           <img src="@/assets/xgmm.png">
           修改密码
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </div>
-      <div class="item" @click="jumpToFee">
+      </router-link>
+      <router-link class="item" :to=" userInfo.username ? '/fee' : '/login' ">
         <div class="info">
           <img src="@/assets/icon3.png">
           党费缴纳
         </div>
         <img src="@/assets/right.png" class="right-btn">
-      </div>
+      </router-link>
+      <!-- <div class="item" data-link="/" @click="handleClick">
+        <div class="info">
+          <img src="@/assets/icon3.png">
+          党费缴纳
+        </div>
+        <img src="@/assets/right.png" class="right-btn">
+      </div> -->
       <div class="btn-wrap" v-show="userInfo.username">
         <mu-button @click="handleLogout">退出登录</mu-button>
-        <mu-fade-transition></mu-fade-transition>
       </div>
     </div>
   </div>
@@ -61,7 +67,6 @@ export default {
   },
   methods: {
     handleLogout() {
-     
         let obj = {
             username: '',
             avatar: '',
@@ -70,38 +75,20 @@ export default {
           }
         if (this.$store.state.userInfo.username) {
           this.$store.commit('CHANGE_userInfo',obj)
+          localStorage.removeItem('token')
           this.$toast.info('退出登录成功')
         } else {
           this.$store.commit('CHANGE_userInfo',obj)
           this.$toast.info('退出登录成功')
         }
     },
-    jumpToInfo() {
-      if (this.$store.state.userInfo.username) {
-        this.$router.push('/layout/index')
+    handleClick($event){
+      console.log($event)
+      if(this.$store.state.userInfo.username){
+          const path = $event.currentTarget.dataset.link  //获取事件对象中的路由
+          this.$router.push(path)
       } else {
-        this.$router.push('/login')
-      }
-    },
-    jumpToScore() {
-      if (this.$store.state.userInfo.username) {
-        this.$router.push('/layout/index')
-      } else {
-        this.$router.push('/login')
-      }
-    },
-    jumpToChangePwd() {
-      if (this.$store.state.userInfo.username) {
-        this.$router.push('/layout/index')
-      } else {
-        this.$router.push('/login')
-      }
-    },
-    jumpToFee() {
-      if (this.$store.state.userInfo.username) {
-        this.$router.push('/layout/index')
-      } else {
-        this.$router.push('/login')
+          this.$router.push('/login')
       }
     },
   },

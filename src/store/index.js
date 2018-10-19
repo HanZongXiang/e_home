@@ -10,11 +10,15 @@ const store = new Vuex.Store({
       idCardNumber: '',
       avatar: '',
       username : ''
-    }
+    },
+    token: ''
   },
   mutations: {
     CHANGE_userInfo (state,payload) {
       state.userInfo = payload
+    },
+    ACCEPT_Token (state,payload) {
+      state.token = payload
     }
   },
   actions: {},

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" v-loading="loading" data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" data-mu-loading-color="secondary"  data-mu-loading-text="正在拼命加载中...">
     <Header :title="this.$route.meta.title"></Header>
     <div class="outer">
       <div class="content-wrap" v-for="(item,index) in listData" :key="index">
@@ -37,7 +37,8 @@ export default {
   name:'',
   data() {
     return {
-      listData: []
+      listData: [],
+      loading: false
     }
   },
   components: {
@@ -45,10 +46,15 @@ export default {
   },
   methods: {
     getListData() {
+      this.loading = true
       this.$axios.get('forum/forumList.do').then(res => {
         if (res.code == 1) {
           this.listData = res.rows
         }
+        this.loading = false
+      }).catch(err => {
+        this.loading = false
+        this.$toast.info('数据获取失败')
       })
     }
   },

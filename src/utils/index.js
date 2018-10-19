@@ -19,7 +19,21 @@ instance.interceptors.request.use(function (config) {
 const xhr = {
   get(url,data,config) {
     return new Promise((resolve,reject) => {
-      instance.get(url, { params: data }, config).then(res => {
+      const token = localStorage.getItem('token')
+      // console.log(token)
+      let computedConfig = {
+        ...config
+      }
+      if (token) {
+        computedConfig = {
+          headers: {
+            'token':token
+          }
+        }
+      }
+
+      // console.log(computedConfig)
+      instance.get(url, { params: data, ...computedConfig }, config).then(res => {
         resolve(res.data)
       }).catch(err => {
         reject(err)

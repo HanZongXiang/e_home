@@ -11,21 +11,21 @@
           <img src="../../assets/icon1.png">
           <div>政治学习</div>
         </router-link>
-        <router-link to="/">
+        <router-link to="/thinkReport">
           <img src="../../assets/icon2.png">
           <div>思想汇报</div>
         </router-link>
-        <router-link to="/">
+        <router-link to="/summary">
           <img src="../../assets/icon3.png">
           <div>心得总结</div>
         </router-link>
       </div>
       <div class="row2">
-        <router-link to="/">
+        <router-link to="/discuss">
           <img src="../../assets/icon4.png">
           <div>民主评议</div>
         </router-link>
-        <router-link to="/">
+        <router-link to="/findorg">
           <img src="../../assets/icon5.png">
           <div>流动党员找组织</div>
         </router-link>

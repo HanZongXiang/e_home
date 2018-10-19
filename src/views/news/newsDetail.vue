@@ -1,7 +1,7 @@
 <template>
   <div class="detail">
     <Header :title="title"></Header>
-    <Detail :detail="detail"></Detail>
+    <Detail :detail="detail" v-loading="loading" data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" data-mu-loading-color="secondary"  data-mu-loading-text="正在拼命加载中..."></Detail>
   </div>
 </template>
 
@@ -15,7 +15,8 @@ export default {
     return {
       detail:{},
       content:'',
-      title:''
+      title:'',
+      loading: false
     }
   },
   components: {
@@ -24,6 +25,7 @@ export default {
   },
   methods: {
     getNewsDetails() {
+      this.loading = true
       const newsId = this.$route.params.id
       console.log(newsId)
       this.$axios.get('/news/newsContent.do',{newsId}).then(res => {
@@ -62,7 +64,11 @@ export default {
             default:
               break;
           }
+          this.loading = false
         }
+      }).catch(err => {
+        this.loading = false
+        this.$toast.info('数据获取失败')
       })
     },
     returnPage() {

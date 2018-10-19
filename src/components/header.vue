@@ -3,7 +3,7 @@
     <div class="header-left fll">
       <img src="../assets/logo.png">
     </div>
-    <div class="header-right flr">
+    <div class="header-right flr" v-if="!this.$store.state.userInfo.username">
       <router-link to='/login'>登录</router-link>
     </div>
   </div>

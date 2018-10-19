@@ -3,9 +3,7 @@
     <div>
       <router-view></router-view>
     </div>
-    <div class="bottom-tab">
-      <Tab></Tab>
-    </div>
+    <Tab></Tab>
   </div>
 </template>
 

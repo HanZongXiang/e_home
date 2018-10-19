@@ -39,26 +39,7 @@ export default {
     returnPage() {
       history.go(-1)
     },
-    // getToken() {
-    //   axios.get('/api2/uploadToken/get').then(res => {
-    //     if(res.data.code == 200) {
-    //       console.log(res.data)
-    //     }
-    //   })
-    // },
     handleLogin() {
-      // axios.post('/api2/user/login',this.formData).then(res => {
-      //   if (res.data.code == 200) {
-      //     console.log(res)
-      //     this.$toast.success(res.data.msg);
-      //     this.$store.commit('CHANGE_userInfo',res.data.userInfo)
-      //     setTimeout(() => {
-      //       this.$router.push('/layout/person')
-      //     }, 1000);
-      //   } else {
-      //     this.$toast.error(res.data.msg);
-      //   }
-      // })
       this.$axios.post('/user/userLogin.do',this.formData).then(res => {
         let obj = {
           username: res.data.username,
@@ -68,7 +49,10 @@ export default {
         if (res.code == 1) {
           console.log(res)
           this.$toast.success(res.msg)
+          let token = res.token
           this.$store.commit('CHANGE_userInfo',obj)
+          // this.$store.commit('ACCEPT_Token',token)
+          localStorage.setItem("token",token)
           setTimeout(() => {
             this.$router.push('/layout/person')
           }, 1000)
@@ -79,7 +63,6 @@ export default {
     }
   },
   created() {
-    // this.getToken()
   }
 }
 </script>

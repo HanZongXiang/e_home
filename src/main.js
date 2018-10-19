@@ -8,17 +8,36 @@ import Toast from 'muse-ui-toast';
 import store from './store'
 import 'muse-ui-loading/dist/muse-ui-loading.css'
 import MuseUILoading from 'muse-ui-loading'
-
+import Header from './components/header2'
 
 import 'muse-ui/lib/styles/base.less';
-import { Button, Alert, Dialog, Icon, TextField, Snackbar, Progress, Helpers } from 'muse-ui';
+import {
+  AppBar,
+  AutoComplete,
+  Button,
+  Helpers,
+  Icon,
+  List,
+  LoadMore,
+  Popover,
+  Progress,
+  Snackbar,
+  TextField,
+  Tooltip,
+} from 'muse-ui';
 import 'muse-ui/lib/styles/theme.less';
 
+Vue.use(AppBar);
+Vue.use(AutoComplete);
 Vue.use(Button);
-Vue.use(Icon);
-Vue.use(Snackbar);
-Vue.use(Progress);
 Vue.use(Helpers);
+Vue.use(Icon);
+Vue.use(List);
+Vue.use(LoadMore);
+Vue.use(Popover);
+Vue.use(Progress);
+Vue.use(Snackbar);
+Vue.use(TextField);
 Vue.use(Toast, {
   position: 'top',             
   time: 2000,                       
@@ -31,6 +50,7 @@ Vue.use(Toast, {
 });
 Vue.use(MuseUILoading)
 
+Vue.component('Header',Header)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = $axios

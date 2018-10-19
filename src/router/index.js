@@ -20,7 +20,14 @@ const components = {
   organizations:() => import('@/views/organization/index'),
   history: () => import('@/views/history/index'),
   photo: () => import('@/views/photo/index'),
-  interactive: () => import('@/views/interactive/index')
+  interactive: () => import('@/views/interactive/index'),
+  infomation: () => import('@/views/person/infomation'),
+  findorg: () => import('@/views/organization/findorg'),
+  thinkReport: () => import('@/views/organization/thinkReport'),
+  discuss: () => import('@/views/organization/discuss'),
+  score: () => import('@/views/person/score'),
+  scoreDetail: () => import('@/views/person/scoreDetail'),
+  fee: () => import('@/views/person/fee'),
 }
 
 Vue.use(Router)
@@ -238,6 +245,79 @@ let router = new Router({
       },
       component: components.interactive
     },
+    {
+      path: '/findorg',
+      name: 'findorg',
+      meta: {
+        title: '流动党员找组织'
+      },
+      component: components.findorg
+    },
+    {
+      path: '/thinkReport',
+      name: 'thinkReport',
+      meta: {
+        title: '思想汇报'
+      },
+      component: components.thinkReport
+    },
+    {
+      path: '/summary',
+      name: 'summary',
+      meta: {
+        title: '心得总结'
+      },
+      component: components.thinkReport
+    },
+    {
+      path: '/discuss',
+      name: 'discuss',
+      meta: {
+        title: '掌上组织生活'
+      },
+      component: components.discuss
+    },
+    {
+      path: '/infomation',
+      name: 'infomation',
+      meta: {
+        title: '个人信息'
+      },
+      component: components.infomation
+    },
+    {
+      path: '/updateInfo',
+      name: 'updateInfo',
+      meta: {
+        title: '修改个人信息'
+      },
+      component: components.infomation
+    },
+    {
+      path: '/score',
+      name: 'score',
+      meta: {
+        title: '个人量化积分'
+      },
+      component: components.score
+    },
+    {
+      path: '/scoreDetail',
+      name: 'scoreDetail',
+      meta: {
+        title: '积分明细'
+      },
+      component: components.scoreDetail
+    },
+    {
+      path: '/fee',
+      name: 'fee',
+      meta: {
+        title: '党费缴纳'
+      },
+      component: components.fee
+    }
+    
   ]
 })
 

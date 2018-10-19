@@ -1,5 +1,5 @@
 <template>
-  <div class="index-wrap">
+  <div class="index-wrap" v-loading="loading" data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" data-mu-loading-color="secondary" data-mu-loading-text="正在拼命加载中...">
     <Header></Header>
     <div class="content-wrap">
       <div class="swiper-wrap">
@@ -119,7 +119,8 @@ export default {
         //默认为false，普通模式：slide滑动时只滑动一格，并自动贴合wrapper，设置为true则变为free模式，slide会根据惯性滑动可能不止一格且不会贴合。
         // freeMode:true
       },
-      swiperData: []
+      swiperData: [],
+      loading: false
     }
   },
   components: {
@@ -129,10 +130,15 @@ export default {
   },
   methods: {
     getSwiper() {
+      this.loading = true
       this.$axios.get('/carousel/carouselList.do').then(res => {
         if (res.code == 1) {
           this.swiperData = res.rows
         }
+        this.loading = false
+      }).catch(err => {
+        this.loading = false
+        this.$toast.info('数据获取失败')
       })
     }
   },
