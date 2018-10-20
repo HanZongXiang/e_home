@@ -25,9 +25,12 @@ const components = {
   findorg: () => import('@/views/organization/findorg'),
   thinkReport: () => import('@/views/organization/thinkReport'),
   discuss: () => import('@/views/organization/discuss'),
+  personalSummary: () => import('@/views/organization/personalSummary'),
   score: () => import('@/views/person/score'),
   scoreDetail: () => import('@/views/person/scoreDetail'),
   fee: () => import('@/views/person/fee'),
+  updatePass: () => import('@/views/person/updatePass'),
+  
 }
 
 Vue.use(Router)
@@ -278,6 +281,14 @@ let router = new Router({
       component: components.discuss
     },
     {
+      path: '/personalSummary',
+      name: 'personalSummary',
+      meta: {
+        title: '个人总结'
+      },
+      component: components.personalSummary
+    },
+    {
       path: '/infomation',
       name: 'infomation',
       meta: {
@@ -308,6 +319,14 @@ let router = new Router({
         title: '积分明细'
       },
       component: components.scoreDetail
+    },
+    {
+      path: '/updatePass',
+      name: 'updatePass',
+      meta: {
+        title: '修改密码'
+      },
+      component: components.updatePass
     },
     {
       path: '/fee',

@@ -1,6 +1,6 @@
 <template>
   <div class="header-wrap">
-    <i class="icon fll" @click="returnPage"></i>
+    <img src="/static/返回.png" class="return fll" @click="returnPage"></img>
     <h3 class="title">{{title}}</h3>
   </div>
 </template>
@@ -33,13 +33,11 @@ export default {
 .header-wrap {
   text-align: center;
 
-  .icon {
+  .return {
     display: block;
+    margin-top: 0.3rem;
     width: 0.36rem;
-    height: 52.5px;
     text-align: left;
-    background:url('../assets/news/return_btn.png') no-repeat center center;
-    background-size: (10px,10px);
   }
 }
 

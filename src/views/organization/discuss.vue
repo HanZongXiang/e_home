@@ -2,8 +2,8 @@
   <div class="wrapper">
     <Header :title="this.$route.meta.title"></Header>
     <div class="btn-wrap">
-      <mu-button color="error">个人总结</mu-button>
-      <mu-button color="error">民主评议</mu-button>
+      <mu-button color="error" @click="$router.push('/personalSummary')">个人总结</mu-button>
+      <mu-button color="error" @click="discuss">民主评议</mu-button>
     </div>
   </div>
 </template>
@@ -13,14 +13,18 @@ export default {
   name:'',
   data() {
     return {
-
     }
   },
   components: {
 
   },
   methods: {
+    summary() {
 
+    },
+    discuss() {
+
+    }
   }
 }
 </script>

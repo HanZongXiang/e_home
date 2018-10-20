@@ -11,17 +11,17 @@
           <img src="../../assets/icon1.png">
           <div>政治学习</div>
         </router-link>
-        <router-link to="/thinkReport">
+        <router-link :to=" this.$store.state.userInfo.username ? '/thinkReport' : '/login'">
           <img src="../../assets/icon2.png">
           <div>思想汇报</div>
         </router-link>
-        <router-link to="/summary">
+        <router-link :to=" this.$store.state.userInfo.username ? '/summary' : '/login'">
           <img src="../../assets/icon3.png">
           <div>心得总结</div>
         </router-link>
       </div>
       <div class="row2">
-        <router-link to="/discuss">
+        <router-link :to=" this.$store.state.userInfo.username ? '/discuss' : '/login'">
           <img src="../../assets/icon4.png">
           <div>民主评议</div>
         </router-link>

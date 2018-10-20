@@ -150,6 +150,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.content-wrap {
+  padding-bottom:  1rem;
+}
 .swiper-wrap {
   margin-top:52.5px;
   width: 7.2rem;

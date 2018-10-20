@@ -19,6 +19,7 @@
     "muse-ui-progress": "^0.1.0",
     "muse-ui-toast": "^0.3.0",
     "node-sass": "^4.9.3",
+    "qs": "^6.5.2",
     "querystring": "^0.2.0",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",

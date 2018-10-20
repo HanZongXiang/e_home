@@ -52,6 +52,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin-bottom: 32px;
+    text-align: center;
 
     img {
       width: 3rem;

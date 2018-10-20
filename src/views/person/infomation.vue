@@ -1,19 +1,27 @@
 <template>
   <div class="info-wrap">
     <Header :title="this.$route.meta.title"></Header>
-    <router-link to="/updateInfo" class="edit">{{this.$route.name == 'infomation' ? '编辑' : '保存'}}</router-link>
+    <div @click="handleEdit" class="edit" v-if="this.$route.name == 'infomation'">编辑</div>
+    <div @click="handleSave" class="edit" v-else>保存</div>
     <div class="list-wrap">
       <div class="list-item">
         <div class="item-title">头像</div>
-        <div class="item.content">
-          <img :src="infomations.header" class="avatar" :class="{editing:this.$route.name == 'updateInfo'}">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
+          <img :src="infomations.header" class="avatar">
+        </div>
+        <div class="upload" v-else>
+          <label class="upload-container">
+            <img :src="infomations.header" class="avatar editing">
+            <input type="file" style="display:none" name="file" @change="upload">
+          </label>
         </div>
       </div>
       <div class="list-item">
         <div class="item-title">姓名</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.username}}
         </div>
+        <input type="text" v-model="infomations.username" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">身份证</div>
@@ -23,74 +31,98 @@
       </div>
       <div class="list-item">
         <div class="item-title">家庭住址</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.hometown}}
         </div>
+        <input type="text" v-model="infomations.hometown" v-else>
       </div>
       <div class="list-item">
-        <div class="item-title">工作地址</div>
-        <div class="item.content">
+        <div class="item-title" style="overflow:hidden">工作地址</div>
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.address}}
         </div>
+        <input type="text" v-model="infomations.address" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">民族</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.nation}}
         </div>
+        <input type="text" v-model="infomations.nation" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">微信号</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.wxNum}}
         </div>
+        <input type="text" v-model="infomations.wxNum" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">扣扣号</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.qqNum}}
         </div>
+        <input type="text" v-model="infomations.qqNum" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">性别</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.sex == 0 ? '女' : '男'}}
+        </div>
+        <div v-else>
+          <mu-radio v-model="infomations.sex" value="1" label="男"></mu-radio>
+          <mu-radio v-model="infomations.sex" value="0" label="女"></mu-radio>
         </div>
       </div>
       <div class="list-item">
         <div class="item-title">最高学历</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.education}}
         </div>
+        <input type="text" v-model="infomations.education" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">职称</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.jobRank}}
         </div>
+        <input type="text" v-model="infomations.jobRank" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">薪资水平</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.salary}}
         </div>
+        <input type="text" v-model="infomations.salary" v-else>
       </div>
       <div class="list-item">
         <div class="item-title">入党时间</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.joinPartyTime}}
+        </div>
+        <div v-else>
+          <input type="date" v-model="infomations.joinPartyTime">
         </div>
       </div>
       <div class="list-item">
         <div class="item-title">党费最后缴纳时间</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.lastPayTime}}
+        </div>
+        <div v-else>
+          <input type="date" v-model="infomations.lastPayTime">
         </div>
       </div>
       <div class="list-item">
         <div class="item-title">当前身份</div>
-        <div class="item.content">
+        <div class="item.content" v-if="this.$route.name == 'infomation'">
           {{infomations.partyIdentity}}
+        </div>
+        <div v-else>
+          <mu-select v-model="infomations.partyStatus">
+            <mu-option v-for="option,index in options" :key="option.id" :label="option.identity" :value="option.id">
+            </mu-option>
+          </mu-select>
         </div>
       </div>
     </div>
@@ -103,8 +135,23 @@ export default {
   name:'',
   data() {
     return {
-      infomations: [],
-      loading: false
+      infomations: {},
+      editing: false,
+      options: [
+        {
+          identity:'党员',
+          id: 2
+        },
+        {
+          identity:'预备党员',
+          id: 1
+        },
+        {
+          identity:'积极分子',
+          id:0
+        }
+        
+      ]
     }
   },
   components: {
@@ -117,24 +164,62 @@ export default {
         if (res.code == 1) {
           console.log(res)
           this.infomations = res.data
-          this.loading = false
         }
       }).catch(err => {
         this.$toast.error('数据请求失败')
-        this.loading = false
       })
+    },
+    handleEdit() {
+      this.$router.push('/updateInfo')
+    },
+    handleSave() {
+      let formData = {
+        username: this.infomations.username,
+        // header: this.infomations.header,
+        address: this.infomations.address,
+        hometown: this.infomations.hometown,
+        nation: this.infomations.nation,
+        wxNum: this.infomations.wxNum,
+        qqNum: this.infomations.qqNum,
+        sex: this.infomations.sex,
+        education: this.infomations.education,
+        jobRank: this.infomations.jobRank,
+        salary: this.infomations.salary,
+        joinPartyTime: this.infomations.joinPartyTime,
+        lastPayTime: this.infomations.lastPayTime,
+        partyStatus: this.infomations.partyStatus
+      }
+      this.$axios.post('/user/modifyInfo.do',formData).then(res => {
+        if (res.code == 1) {
+          this.$toast.success(res.msg)
+          let obj = {
+            avatar: this.infomations.header,
+            username: this.infomations.username
+          }
+          this.$store.commit('CHANGE_userInfo',obj)
+          this.$router.push('/infomation')
+          this.getInfomations()
+        } else {
+          this.$toast.error(res.msg)
+        }
+      })
+    },
+    upload(event) {
+      console.log(event)
     }
   },
   created() {
     this.getInfomations()
+    
   }
 }
 </script>
 
 <style scoped lang="scss">
+
 .edit {
   display:block;
-  position: absolute;
+  position: fixed;
   top: 0.3rem;
   right: 0.2rem;
   z-index: 33;
@@ -144,6 +229,7 @@ export default {
 
 .list-wrap {
   margin-top: 1rem;
+  background: #fff;
 
   .list-item {
     padding:0.2rem;
@@ -153,15 +239,32 @@ export default {
     color: #444;
     border-bottom: 1px solid #e1e1e1;
 
+    input {
+      border: none;
+      outline: none;
+      text-align: right;
+    }
+
     .avatar {
       display: block;
       width: 0.75rem;
       height: 0.55rem;
+      // border-radius: 50%;
     }
 
     .editing {
       width: 0.9rem;
     }
   }
+  /deep/ {
+
+    .mu-input {
+      margin-bottom: 0;
+    }
+    .mu-text-field-input {
+      text-align: right;
+    }
+  }
 }
+
 </style>

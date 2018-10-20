@@ -22,7 +22,7 @@
         </div>
         <img src="@/assets/right.png" class="right-btn">
       </router-link>
-      <router-link class="item" :to=" userInfo.username ? '/changePwd' : '/login' ">
+      <router-link class="item" :to=" userInfo.username ? '/updatePass' : '/login' ">
         <div class="info">
           <img src="@/assets/xgmm.png">
           修改密码
@@ -36,13 +36,6 @@
         </div>
         <img src="@/assets/right.png" class="right-btn">
       </router-link>
-      <!-- <div class="item" data-link="/" @click="handleClick">
-        <div class="info">
-          <img src="@/assets/icon3.png">
-          党费缴纳
-        </div>
-        <img src="@/assets/right.png" class="right-btn">
-      </div> -->
       <div class="btn-wrap" v-show="userInfo.username">
         <mu-button @click="handleLogout">退出登录</mu-button>
       </div>
@@ -90,7 +83,7 @@ export default {
       } else {
           this.$router.push('/login')
       }
-    },
+    }
   },
   computed: {
     ...mapState(['userInfo'])

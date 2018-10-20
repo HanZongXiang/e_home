@@ -1,10 +1,5 @@
 <template>
-  <div class="news-wrap" ref="container"  
-       v-loading="loadingTransition" 
-       data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" 
-       data-mu-loading-color="secondary"  
-       data-mu-loading-text="正在拼命加载中..."
-  >
+  <div class="news-wrap" ref="container">
     <Header :title="this.$route.meta.title"></Header>
     <mu-load-more @refresh="refresh" 
       :refreshing="refreshing" 
@@ -62,7 +57,7 @@ export default {
         this.$toast.info('数据获取失败')
       })
     },
-     refresh () {
+    refresh () {
       this.refreshing = true;
       this.$refs.container.scrollTop = 0;
       setTimeout(() => {

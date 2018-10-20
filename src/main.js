@@ -23,7 +23,11 @@ import {
   Progress,
   Snackbar,
   TextField,
-  Tooltip,
+  Form,
+  Radio,
+  Select,
+  Picker,
+  DateInput
 } from 'muse-ui';
 import 'muse-ui/lib/styles/theme.less';
 
@@ -38,6 +42,10 @@ Vue.use(Popover);
 Vue.use(Progress);
 Vue.use(Snackbar);
 Vue.use(TextField);
+Vue.use(Form);
+Vue.use(Radio);
+Vue.use(Select);
+Vue.use(DateInput);
 Vue.use(Toast, {
   position: 'top',             
   time: 2000,                       

@@ -11,6 +11,7 @@ instance.interceptors.request.use(function (config) {
     config.data = qs.stringify(config.data)
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
   }
+  // console.log(config)
   return config
 }, function (error) {
   return Promise.reject(error)
@@ -31,7 +32,6 @@ const xhr = {
           }
         }
       }
-
       // console.log(computedConfig)
       instance.get(url, { params: data, ...computedConfig }, config).then(res => {
         resolve(res.data)
@@ -42,7 +42,19 @@ const xhr = {
   },
   post(url, data, config) {
     return new Promise((resolve, reject) => {
-      instance.post(url, data , config).then(res => {
+      const token = localStorage.getItem('token')
+      // console.log(token)
+      let computedConfig = {
+        ...config
+      }
+      if (token) {
+        computedConfig = {
+          headers: {
+            'token': token
+          }
+        }
+      }
+      instance.post(url, data, computedConfig).then(res => {
         resolve(res.data)
       }).catch(err => {
         reject(err)
