@@ -329,6 +329,14 @@ let router = new Router({
       component: components.updatePass
     },
     {
+      path:"/interactiveReply",
+      name:"interactiveReply",
+      meta: {
+        title: '党员云互动'
+      },
+      component:() => import('@/views/interactive/reply')
+    },
+    {
       path: '/fee',
       name: 'fee',
       meta: {

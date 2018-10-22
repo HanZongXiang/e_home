@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Header from '@/components/header2'
 import {mapState} from 'vuex'
 
@@ -83,10 +82,22 @@ export default {
       } else {
           this.$router.push('/login')
       }
+    },
+    refreshInfo() {
+      this.$axios.get('/user/userInfo.do').then(res => {
+        let obj = {
+          username: res.data.username,
+          avatar: res.data.header
+        }
+        this.$store.commit('CHANGE_userInfo',obj)
+      })
     }
   },
   computed: {
     ...mapState(['userInfo'])
+  },
+  created() {
+    this.refreshInfo()
   }
 }
 </script>

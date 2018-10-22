@@ -27,7 +27,9 @@ import {
   Radio,
   Select,
   Picker,
-  DateInput
+  DateInput,
+  Card,
+  Avatar
 } from 'muse-ui';
 import 'muse-ui/lib/styles/theme.less';
 
@@ -46,6 +48,8 @@ Vue.use(Form);
 Vue.use(Radio);
 Vue.use(Select);
 Vue.use(DateInput);
+Vue.use(Card);
+Vue.use(Avatar);
 Vue.use(Toast, {
   position: 'top',             
   time: 2000,                       

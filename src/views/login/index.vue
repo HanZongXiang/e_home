@@ -51,7 +51,6 @@ export default {
           this.$toast.success(res.msg)
           let token = res.token
           this.$store.commit('CHANGE_userInfo',obj)
-          // this.$store.commit('ACCEPT_Token',token)
           localStorage.setItem("token",token)
           setTimeout(() => {
             this.$router.push('/layout/person')

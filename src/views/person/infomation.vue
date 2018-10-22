@@ -11,8 +11,9 @@
         </div>
         <div class="upload" v-else>
           <label class="upload-container">
-            <img :src="infomations.header" class="avatar editing">
+            <img :src="infomations.header" class="avatar editing" id="pic">
             <input type="file" style="display:none" name="file" @change="upload">
+            <!-- <img src="" class="avatar editing" hidden="hidden"> -->
           </label>
         </div>
       </div>
@@ -131,6 +132,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name:'',
   data() {
@@ -172,24 +175,23 @@ export default {
     handleEdit() {
       this.$router.push('/updateInfo')
     },
-    handleSave() {
-      let formData = {
-        username: this.infomations.username,
-        // header: this.infomations.header,
-        address: this.infomations.address,
-        hometown: this.infomations.hometown,
-        nation: this.infomations.nation,
-        wxNum: this.infomations.wxNum,
-        qqNum: this.infomations.qqNum,
-        sex: this.infomations.sex,
-        education: this.infomations.education,
-        jobRank: this.infomations.jobRank,
-        salary: this.infomations.salary,
-        joinPartyTime: this.infomations.joinPartyTime,
-        lastPayTime: this.infomations.lastPayTime,
-        partyStatus: this.infomations.partyStatus
+    upload (event) {
+      let file = event.target.files[0]
+      let reader = new FileReader()
+      var preview = document.querySelector('#pic')
+      reader.onloadend = () => {
+        preview.src = reader.result
+        let imgsrc = reader.result.split(',')[1]
+
+        this.$axios.post('/image/uploadBase64.do',{myFile: imgsrc}).then(res => {
+          this.infomations.header = res.url
+        })
       }
-      this.$axios.post('/user/modifyInfo.do',formData).then(res => {
+      reader.readAsDataURL(file)
+    },
+    handleSave() {
+      const res = delete this.infomations.idCard
+      this.$axios.post('/user/modifyInfo.do',this.infomations).then(res => {
         if (res.code == 1) {
           this.$toast.success(res.msg)
           let obj = {
@@ -204,13 +206,9 @@ export default {
         }
       })
     },
-    upload(event) {
-      console.log(event)
-    }
   },
   created() {
     this.getInfomations()
-    
   }
 }
 </script>

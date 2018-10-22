@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div v-loading="loading" 
+       data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" 
+       data-mu-loading-color="secondary"  
+       data-mu-loading-text="正在拼命加载中..."
+  >
     <Header :title="this.$route.meta.title"></Header>
     <div class="wrapper">
       <router-link :to="{name:'photoDetail',params:{id:item.newsId}}" class="photo-item" v-for="(item,index) in photoData" :key="index">
@@ -17,7 +21,8 @@ export default {
   name:'',
   data() {
     return {
-      photoData: []
+      photoData: [],
+      loading: false
     }
   },
   components: {
@@ -25,11 +30,15 @@ export default {
   },
   methods: {
     getPhotoData() {
+      this.loading = true
       this.$axios.get('/news/newsList.do',{page:1,rows:10,type:7}).then(res => {
         if (res.code == 1) {
           console.log(res)
+          this.loading = false
           this.photoData = res.rows
         }
+      }).catch(err => {
+        this.loading = false
       })
     }
   },

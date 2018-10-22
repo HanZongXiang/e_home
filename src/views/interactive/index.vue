@@ -30,7 +30,9 @@
           <div class="row2">
             <p>{{item.content}}</p>
           </div>
-          <router-link class="row3" to="">
+          <router-link class="row3" :to="{path:'/interactiveReply',query:{avatar:item.header,
+            time:item.currentTime,author:item.username,content:item.content,id: item.forumId
+          }}">
             <img src="@/assets/interactive/消息.png" class="message">
             <span>回复</span> 
           </router-link>
@@ -58,7 +60,6 @@
 </template>
 
 <script>
-const qs = require('qs')
 
 export default {
   name:'',
