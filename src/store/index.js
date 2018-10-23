@@ -11,7 +11,6 @@ const store = new Vuex.Store({
       avatar: '',
       username : ''
     },
-    token: ''
   },
   mutations: {
     CHANGE_userInfo (state,payload) {

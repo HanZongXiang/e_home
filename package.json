@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.10.0",
+    "cheerio": "^1.0.0-rc.2",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "muse-ui": "^3.0.1",

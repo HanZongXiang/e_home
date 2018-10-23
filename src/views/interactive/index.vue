@@ -46,7 +46,8 @@
     <div class="mask" v-show="showModal" @click="handleHidden" ref="mask">
       <div class="bottom-content" ref="content">
         <form>
-          <textarea name="textarea" class="textarea" v-model="formData.content"></textarea>
+          <textarea name="textarea" class="textarea" v-model="formData.content">
+          </textarea>
           <div class="btn-wrapper">
             <input type="button" value="发布" class="publish" @click="publish">
             <input type="button" value="取消" class="cancel" @click="cancel">

@@ -15,24 +15,26 @@
         {{this.$route.query.content}}
       </div>
     </div>
-
-    <div class="comment-detail" v-for="(item,index) in commentData" :key="index">
-      <div class="row1 clearfix">
-        <div class="img-wrapper fll">
-          <img :src="item.header">
+    <div style="margin-bottom:1rem">
+      <div class="comment-detail" v-for="(item,index) in commentData" :key="index">
+        <div class="row1 clearfix">
+          <div class="img-wrapper fll">
+            <img :src="item.header">
+          </div>
+          <div class="author-wrap fll">
+            <div class="author">{{item.username}}</div>
+            <div class="time"><img src="@/assets/interactive/时间.png" style="width:0.25rem;margin-right: 0.1rem;">{{item.timeFormat}}</div>
+          </div>
         </div>
-        <div class="author-wrap fll">
-          <div class="author">{{item.username}}</div>
-          <div class="time"><img src="@/assets/interactive/时间.png" style="width:0.25rem;margin-right: 0.1rem;">{{item.timeFormat}}</div>
+        <div class="content">
+          {{item.comment}}
         </div>
-      </div>
-      <div class="content">
-        {{item.comment}}
       </div>
     </div>
+    
 
     <div class="comment">
-      <input type="text" placeholder="评论内容" v-model="content">
+      <input type="text" placeholder="评论内容" v-model="content" @keyup.enter="addComment">
       <input type="submit" value="评论" @click="addComment">
     </div>
     
@@ -67,6 +69,7 @@ export default {
         // console.log(res)
         if(res.code == 1) {
           this.$toast.success(res.msg)
+          this.content = ''
           this.getCommentDetail()
         }
       })

@@ -41,12 +41,10 @@ export default {
     getListData() {
       let page = this.page;
       let rows = this.rows;
-      // console.log(this.$route)
       this.loadingTransition = true
       this.$axios.get('/news/newsList.do',{page,rows,type:this.$route.meta.type}).then(res => {
         if (res.code == 1) {
           console.log(res)
-          // console.log(this.$route.name)
           this.listData = res.rows
           this.loadingTransition = false
         } else {

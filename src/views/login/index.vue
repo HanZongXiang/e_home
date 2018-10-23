@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       formData: {
-        id_card:'1001',
+        id_card:'1002',
         password:'123456'
       }
     }

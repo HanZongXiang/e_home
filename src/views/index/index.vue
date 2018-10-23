@@ -1,5 +1,10 @@
 <template>
-  <div class="index-wrap" v-loading="loading" data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" data-mu-loading-color="secondary" data-mu-loading-text="正在拼命加载中...">
+  <div class="index-wrap" 
+      v-loading="loading" 
+      data-mu-loading-overlay-color="rgba(0, 0, 0, .6)" 
+      data-mu-loading-color="secondary" 
+      data-mu-loading-text="正在拼命加载中..."
+  >
     <Header></Header>
     <div class="content-wrap">
       <div class="swiper-wrap">

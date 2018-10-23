@@ -24,6 +24,7 @@ const components = {
   infomation: () => import('@/views/person/infomation'),
   findorg: () => import('@/views/organization/findorg'),
   thinkReport: () => import('@/views/organization/thinkReport'),
+  summary: () => import('@/views/organization/summary'),
   discuss: () => import('@/views/organization/discuss'),
   personalSummary: () => import('@/views/organization/personalSummary'),
   score: () => import('@/views/person/score'),
@@ -39,6 +40,10 @@ let router = new Router({
   // base:'/',
   // redirect:'/index',
   routes: [
+    {
+      path:'/',
+      redirect: '/layout/index'
+    },
     {
       path: '/layout',
       name: 'layout',
@@ -270,11 +275,11 @@ let router = new Router({
       meta: {
         title: '心得总结'
       },
-      component: components.thinkReport
+      component: () => import('@/views/organization/summary')
     },
     {
-      path: '/discuss',
-      name: 'discuss',
+      path: '/lifeChioce',
+      name: 'lifeChioce',
       meta: {
         title: '掌上组织生活'
       },
@@ -287,6 +292,22 @@ let router = new Router({
         title: '个人总结'
       },
       component: components.personalSummary
+    },
+    {
+      path: '/discuss',
+      name: 'discuss',
+      meta: {
+        title: '民主评议'
+      },
+      component: () => import('@/views/organization/discussDetail')
+    },
+    {
+      path: '/discussMembers',
+      name: 'discussMembers',
+      meta: {
+        title: '参评党员'
+      },
+      component: () => import('@/views/organization/discussMembers')
     },
     {
       path: '/infomation',

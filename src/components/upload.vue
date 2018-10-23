@@ -1,6 +1,7 @@
 <template>
   <label class="upload-wrapper">
-    <i class="icon"></i>
+    <i class="icon" v-if="!imgUrl"></i>
+    <img :src="imgUrl" v-else>
     <input type="file" name="file" style="display:none" @change="upload">
   </label>
 </template>
@@ -68,6 +69,12 @@ export default {
   height: 2rem;
   border: 1px solid #e8e8e8;
   border-radius: 6px;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 6px;
+  }
 
   .icon{
     position: absolute;

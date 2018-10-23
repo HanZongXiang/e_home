@@ -21,7 +21,7 @@
         </router-link>
       </div>
       <div class="row2">
-        <router-link :to=" this.$store.state.userInfo.username ? '/discuss' : '/login'">
+        <router-link :to=" this.$store.state.userInfo.username ? '/lifeChioce' : '/login'">
           <img src="../../assets/icon4.png">
           <div>民主评议</div>
         </router-link>

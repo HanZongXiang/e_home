@@ -190,7 +190,7 @@ export default {
       reader.readAsDataURL(file)
     },
     handleSave() {
-      const res = delete this.infomations.idCard
+      const result = delete this.infomations.idCard
       this.$axios.post('/user/modifyInfo.do',this.infomations).then(res => {
         if (res.code == 1) {
           this.$toast.success(res.msg)
